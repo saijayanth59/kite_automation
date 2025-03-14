@@ -1,9 +1,6 @@
 import pyautogui as pg
 from time import sleep
 import pandas as pd
-import pyperclip
-
-pyperclip.set_clipboard("xclip")
 
 
 def cord(x, y):
@@ -50,33 +47,27 @@ def left_slide():
     pg.hotkey("alt", "left")
 
 
-def click(t=0.5):
+def click(t=1, image=None):
     sleep(t)
-    pg.click()
+    if image:
+        pg.click(image)
+    else:
+        pg.click()
 
 
 def main():
     sleep(2)
 
-    data = None
     for _ in range(25):
         zoomout()
-    for _ in range(2):
+    for _ in range(1):
         go_table_view()
         click()
-        to_copy_btn()
-        click(t=1)
-        if data is None:
-            data = pd.read_clipboard()
-        else:
-            data = pd.concat([data, pd.read_clipboard()],
-                             axis=0).drop_duplicates()
+        click(image="download.png")
+        sleep(2)
         escape()
-        sleep(1)
         left_slide()
-        sleep(1)
-
-    data.to_csv("data.csv")
+        sleep(2)
 
 
 main()
