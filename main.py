@@ -9,7 +9,7 @@ def cord(x, y):
 
 def go_zoom_in():
     pg.moveTo(cord(0.475, 0.85))
-git s
+
 
 def go_zoom_out():
     pg.moveTo(cord(0.449, 0.85))
